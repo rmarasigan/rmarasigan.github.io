@@ -547,3 +547,18 @@ footer .row
     box-shadow: 0 2.5em 0 0;
   }
 }
+
+@media print
+{
+  html,
+  body
+  {
+    color: #EEEEEE !important;
+    background: #121212 !important;
+  }
+
+  nav
+  {
+    visibility: hidden !important;
+  }
+}
