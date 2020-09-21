@@ -1,0 +1,549 @@
+html
+{
+  color: #EEEEEE;
+  background: #121212;
+}
+
+body
+{
+  color: #EEEEEE;
+  background: #121212;
+  caret-color: #EF5350;
+}
+
+nav
+{
+  background-color: #1A1A1A;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+small
+{
+  font-size: 0.75rem;
+}
+
+a
+{
+  color: #EEEEEE;
+}
+
+a:hover
+{
+  color: #EEEEEE;
+  text-decoration: none;
+}
+
+.table
+{
+  font-size: 0.75rem;
+}
+
+button:focus,
+.btn:focus
+{
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-dark .navbar-nav .nav-link
+{
+  color: #FBFBFB;
+}
+
+.card
+{
+  color: #FBFBFB;
+  background: #292929;
+}
+
+.page-header--container,
+.page-header-gallery--container
+{
+  height: 100vh;
+  color: #FBFBFB;
+  min-height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.page-header--container,
+.page-header-gallery--container
+{
+  background-image: url(../img/page-header.jpg);
+}
+
+.page-header--container .container,
+.page-header--container .container .row,
+.page-header-gallery--container .container,
+.page-header-gallery--container .container .row
+{
+  height: 100%;
+}
+
+.page-header--container .container .row,
+.page-header-gallery--container .container .row
+{
+  align-items: center;
+}
+
+.page-header--container .container .row .col-12,
+.page-header-gallery--container .container .row .col-12
+{
+  text-align: center;
+}
+
+.page-header-icon
+{
+  width: 60px;
+  height: 60px;
+}
+
+.page-header--wrapper h1
+{
+  font-weight: 400;
+  font-family: monospace;
+  text-transform: uppercase;
+}
+
+.page-header--wrapper h1:after
+{
+  content: "";
+  width: 20%;
+  height: 0.2rem;
+  background: #EF5350;
+}
+
+.page-header--wrapper h1 span
+{
+  color: #EF5350;
+  text-shadow: 2px 1px 3px #EF5350;
+}
+
+.page-header--wrapper .lead
+{
+  margin: 0 auto;
+  font-size: 1.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: monospace;
+  letter-spacing: 0.15rem;
+  transform: translateY(-50%);
+  border-right: 0.15rem solid #EF5350;
+  animation: typing 6s steps(44) 1s 1 normal both, blink-caret 800ms steps(44) infinite normal;
+}
+
+.page-header--wrapper .photography-lead
+{
+  animation: photography-typing 6s steps(44) 1s 1 normal both, blink-caret 800ms steps(44) infinite normal;
+}
+
+@keyframes typing
+{
+  from { width: 0 }
+  to { width: 31% }
+}
+
+@keyframes photography-typing
+{
+  from { width: 0 }
+  to { width: 18% }
+}
+
+@keyframes blink-caret
+{
+  from, to { border-color: transparent }
+  50% { border-color: #EF5350 }
+}
+
+.page-header--wrapper .page-header--link .btn
+{
+  padding: 0;
+  color: #EEEEEE;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.page-header--wrapper .page-header--link .btn:hover
+{
+  color: #EF5350;
+  transform: scale(1.5) translateZ(0);
+  transition: transform 0.4s ease-out;
+}
+
+@media (min-width: 576px)
+{
+  .card-columns
+  {
+    column-count: 4;
+    -moz-column-count: 4;
+  }
+}
+
+.about-me--container,
+.skills--container,
+.os--container,
+.experience--container,
+.portfolio--container
+{
+  margin-bottom: 5rem;
+}
+
+.gallery--header
+{
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.about-me--header h2,
+.skills--header h2,
+.os--header h2,
+.experience--header h2,
+.portfolio--header h2,
+.gallery--header h2
+{
+  font-weight: 400;
+  text-align: center;
+  position: relative;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  font-family: "Basier Circle";
+}
+
+.about-me--header h2:before,
+.about-me--header h2:after,
+.skills--header h2:before,
+.skills--header h2:after,
+.os--header h2:before,
+.os--header h2:after,
+.experience--header h2:before,
+.experience--header h2:after,
+.portfolio--header h2:before,
+.portfolio--header h2:after,
+.gallery--header h2:before,
+.gallery--header h2:after
+{
+  top: 50%;
+  content: "";
+  width: 20%;
+  height: 0.2rem;
+  display: block;
+  position: absolute;
+  background: #EF5350;
+}
+
+.about-me--header h2:before,
+.skills--header h2:before,
+.os--header h2:before,
+.experience--header h2:before,
+.portfolio--header h2:before,
+.gallery--header h2:before
+{
+  left: 0;
+}
+
+.about-me--header h2:after,
+.skills--header h2:after,
+.os--header h2:after,
+.experience--header h2:after,
+.portfolio--header h2:after,
+.gallery--header h2:after
+{
+  right: 0;
+}
+
+.skills--container .card:hover,
+.os--container .card:hover
+{
+  cursor: pointer;
+  color: #EEEEEE;
+  background-color: #EF535090;
+}
+
+.skills--card-slick .card
+{
+  outline: none;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.skills-icon,
+.os-icon,
+.portfolio-icon
+{
+  display: flex;
+  justify-content: center;
+}
+
+.skills-icon span,
+.os-icon span,
+.portfolio-icon span
+{
+  font-size: 4rem;
+}
+
+.skills-name,
+.os-name,
+.portfolio-name
+{
+  text-align: center;
+}
+
+.experience--description
+{
+  margin-bottom: 0.50rem;
+}
+
+
+.portfolio--container
+{
+  margin-bottom: 10rem;
+}
+
+.portfolio--bamis,
+.portfolio--photography
+{
+  text-align: center;
+  align-items: center;
+}
+
+.portfolio--bamis img
+{
+  width: 150px;
+  height: 150px;
+}
+
+.portfolio--card .card-body a
+{  
+  cursor: pointer;
+  color: #EEEEEE;
+}
+
+.portfolio--card .card-body a:hover
+{
+  color: #EF5350;
+}
+
+.portfolio--photography img,
+.portfolio--brochure img
+{
+  height: 100%;
+}
+
+.portfolio--photography .card-img-overlay,
+.portfolio--brochure .card-img-overlay
+{
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio--brochure .card-img-overlay
+{
+  color: #FBFBFB;
+  font-weight: 500;
+}
+
+.portfolio--photography .card-img-overlay .card-body
+{
+  bottom: 0;
+  position: absolute;
+}
+
+::-webkit-scrollbar
+{
+  width: .4rem;
+  background-color: transparent;
+}
+
+::-webkit-selection
+{
+  background: #FFCDD2;
+}
+
+::selection
+{
+  background: #FFCDD2;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background-color: #EF5350;;
+  border-top-left-radius: 1.5625rem;
+  border-top-right-radius: 1.5625rem;
+  border-bottom-left-radius: 1.5625rem;
+  border-bottom-right-radius: 1.5625rem;
+}
+
+.content--wrapper
+{
+  min-height: 100vh;
+  position: relative;
+}
+
+.gallery--wrapper h2
+{
+  margin-bottom: 5rem;
+}
+
+.gallery--wrapper .card
+{
+  width: 100%;
+  border: none;
+  margin-bottom: 0;
+  transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.gallery--wrapper .card .card-img
+{
+  height: 100vh;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.gallery--wrapper .card h5
+{
+  left: 0;
+  bottom: 2rem;
+  padding: 1rem;
+  font-size: 2rem;
+  color: #FBFBFB;
+  position: absolute;
+  background: #0C0C0C80;
+}
+
+footer
+{
+  bottom: 0;
+  width: 100%;
+  color: #FBFBFB;
+  position: absolute;
+  font-size: .875rem;
+  padding: 3rem 1rem;
+	background-color: #1A1A1A;
+}
+
+footer .row
+{
+  margin-left: 0;
+  margin-right: 0;
+  justify-content: center;
+}
+
+
+@media (max-width: 991px)
+{
+  .gallery--wrapper h5
+  {
+    font-size: 16px !important;
+	}
+}
+
+@media (max-width: 768px)
+{
+
+  .gallery--wrapper h5
+  {
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 576px)
+{
+  @keyframes typing
+  {
+    from { width: 0 }
+    to { width: 70% }
+  }
+
+  @keyframes photography-typing
+  {
+    from { width: 0 }
+    to { width: 40% }
+  }
+
+  .gallery--wrapper h5
+  {
+    font-size: 16px !important;
+	}
+}
+
+.loader,
+.loader:before,
+.loader:after
+{
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  animation-fill-mode: both;
+  animation: load 1.8s infinite ease-in-out;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation: load 1.8s infinite ease-in-out;
+}
+
+.loader
+{
+  top: 50%;
+  margin: auto;
+  display: none;
+  font-size: 10px;  
+  color: #B71C1C;
+  position: relative;
+  text-indent: -9999em;
+  animation-delay: -0.16s;
+  transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  -webkit-transform: translateZ(0);
+}
+
+.loader:before,
+.loader:after
+{
+  top: 0;
+  content: '';
+  position: absolute;
+}
+
+.loader:before
+{
+  left: -3.5em;
+  animation-delay: -0.32s;
+  -webkit-animation-delay: -0.32s;
+}
+
+.loader:after
+{
+  left: 3.5em;
+}
+
+@-webkit-keyframes load
+{
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+
+@keyframes load
+{
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
