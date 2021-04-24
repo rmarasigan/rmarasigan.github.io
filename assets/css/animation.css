@@ -1,0 +1,33 @@
+@-webkit-keyframes scrolllink
+{
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+    box-shadow: 0 0 0 60px rgba(255, 255, 255, .1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes scrolllink
+{
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+    box-shadow: 0 0 0 60px rgba(255, 255, 255, .1);
+  }
+  100% {
+    opacity: 0;
+  }
+}

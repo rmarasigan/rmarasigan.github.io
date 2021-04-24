@@ -1,0 +1,117 @@
+/* 
+ * Extra small devices (portrait phones, less than 544px) 
+ * No media query since this is the default in Bootstrap because it is "mobile first"
+ * 1rem = 16px
+*/
+.about-header,
+.portfolio-header--wrapper,
+.skills-header
+{
+  text-align: center;
+}
+
+.home-header__scroll
+{
+  bottom: -5rem;
+}
+
+/* ----- About ----- */
+.about-content
+{
+  font-size: 1rem;
+}
+
+/* ----- Timeline ----- */
+.tlb-container ul.tlb li
+{
+  margin-left: 0;
+}
+
+/* ----- Skills ----- */
+.skills-wrapper
+{
+  height: 100%;
+}
+
+/* ----- iPhone 5 both landscape and portrait ----- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) 
+and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71)
+{
+  .jumbotron .col-12 h1
+  {
+    font-size: 3rem;
+  }
+
+  .home-header__scroll
+  {
+    bottom: -4rem;
+  }
+
+  /* ----- About ----- */
+  .about-header h3
+  {
+    font-size: 3rem;
+  }
+
+  .about-content
+  {
+    font-size: 0.8rem;
+  }
+
+  /* ----- Timeline ----- */
+  .tlb-container ul.tlb li  .timestamp
+  {
+    font-size: 0.8rem;
+  }
+
+  .tlb-container ul.tlb li  .item-title
+  {
+    font-size: 0.9rem;
+  }
+
+  .tlb-container ul.tlb li
+  {
+    padding: 0 0 20px 30px;
+  }
+}
+ 
+/* ----- Large devices (desktops, 992px and up) ----- */
+@media (min-width: 992px)
+{ 
+  .about-header,
+  .portfolio-header--wrapper,
+  .skills-header
+  {
+    text-align: start;
+  }
+  
+  .home-header__scroll
+  {
+    bottom: -10rem;
+  }
+
+  /* ----- About ----- */
+  .about-header h3
+  {
+    line-height: 1.2;
+    font-size: 4.5rem;
+  }
+
+  .about-content
+  {
+    font-weight: 300;
+    font-size: 1.25rem;
+  }
+
+  /* ----- Skills ----- */
+  .skills-wrapper
+  {
+    height: 100vh;
+  }
+
+  /* ----- Timeline ----- */
+  .tlb-container ul.tlb li
+  {
+    margin-left: 10em;
+  }
+}
