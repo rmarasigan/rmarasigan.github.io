@@ -33,6 +33,11 @@
   height: 100%;
 }
 
+.portfolio-header
+{
+  top: -105px;
+}
+
 /* ----- iPhone 5 both landscape and portrait ----- */
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) 
 and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71)
@@ -113,5 +118,10 @@ and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71)
   .tlb-container ul.tlb li
   {
     margin-left: 10em;
+  }
+
+  .portfolio-header
+  {
+    top: 0px;
   }
 }
