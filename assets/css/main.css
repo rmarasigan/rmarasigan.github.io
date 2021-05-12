@@ -1,5 +1,5 @@
-@import url("animation.css");
-@import url("responsiveness.css");
+@import url("animation.css?v=1");
+@import url("responsiveness.css?v=2");
 
 /* ----- Header Scroll Down ----- */
 .home-header__scroll
