@@ -1,69 +1,40 @@
 @charset "UTF-8";
-@import url("main.css");
 @import url("../vendor/materialdesignicons/css/materialdesignicons.css");
 
 @font-face
 {
   font-family: 'Overpass Mono';
-  src: url(../typefaces/overpass-mono/overpass-mono-light.otf);
+  src: url(../typefaces/overpass-mono/overpass-mono-semibold.otf);
   font-style: normal;
   font-weight: 300;
 }
 
+html,
 body
 {
-  background-color: #FFFF;
+  cursor: url(../img/cursor__metal.cur), pointer;
 }
 
-a:hover
+footer
+{
+  color: #FFF;
+  background: #1C1D25;
+  justify-content: center;
+}
+
+a
 {
   text-decoration: none;
 }
 
+a:hover
+{
+  cursor: inherit;
+}
+
 .navbar
 {
-  color: #212121;
-  background-color: #FFD600;
   font-family: 'Overpass Mono', monospace;
-}
-
-.navbar ul > li > .nav-link
-{
-  color: #212121;
-  font-weight: 600;
-}
-
-.jumbotron
-{
-  color: #FFD600;
-  min-height: 100vh;
-  margin-bottom: 0px;
-  align-items: center;
-  background-color: #212121;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-blend-mode: screen;
-  background-image: url("../img/abstract-min.jpg");
-}
-
-.jumbotron .container h1
-{
-  font-weight: 700;
-  font-family: 'Overpass Mono', monospace;
-}
-
-footer .row
-{
-  color: #FFD600;
-  padding: 1rem;
-  text-align: center;
-  background: #212121;
-  justify-content: center;
-}
-
-footer .row lead a
-{
-  color: #AB47BC;
 }
 
 ::-webkit-scrollbar
@@ -74,17 +45,17 @@ footer .row lead a
 
 ::-webkit-selection
 {
-  background: #CFCFCF;
+  background: #BDBDBD;
 }
 
 ::selection
 {
-  background: #CFCFCF;
+  background: #BDBDBD;
 }
 
 ::-webkit-scrollbar-thumb
 {
-  background-color: #212121;;
+  background-color: #FFC600;;
   border-top-left-radius: 1.5625rem;
   border-top-right-radius: 1.5625rem;
   border-bottom-left-radius: 1.5625rem;

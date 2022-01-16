@@ -3,35 +3,26 @@
 var doc = document.documentElement;
 doc.setAttribute('data-useragent', navigator.userAgent);
 
-$(function()
+// Default color
+$(".nav-link").css("color", "#FFF");
+$(".navbar-brand").css("color", "#FFF");
+$(".navbar-toggler").css("color", "#FFF");
+
+$(window).scroll(function()
 {
-  $('.btn-group-fab').on('click', '.btn', function()
+  if ($(window).scrollTop() >= 50)
   {
-    $('.btn-group-fab').toggleClass('active');
-  });
-
-  $('#integrityNetModal-tab a').click(function (e)
+    $(".nav-link").css("color", "#212121");
+    $(".navbar").css("background", "#FFC600");
+    $(".navbar-brand").css("color", "#212121");
+    $(".navbar-toggler").css("color", "#212121");
+  }
+  
+  else
   {
-    e.preventDefault();
-    $(this).tab('show');
-  });
-});
-
-// Adds animation when navbar link on click
-$(".nav-item>a[href^='#']").on("click", function (e)
-{
-  e.preventDefault();
-  $("html, body").animate({
-    scrollTop: $(this.hash).offset().top
-  }, 500);
-  return false;
-});
-
-$(".home-header__scroll>a[href^='#']").on("click", function (e)
-{
-  e.preventDefault();
-  $("html, body").animate({
-    scrollTop: $(this.hash).offset().top
-  }, 500);
-  return false;
+    $(".nav-link").css("color", "#FFF");
+    $(".navbar-brand").css("color", "#FFF");
+    $(".navbar-toggler").css("color", "#FFF");
+    $(".navbar").css("background", "transparent");
+  }
 });
