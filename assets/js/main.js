@@ -26,3 +26,8 @@ $(window).scroll(function()
     $(".navbar").css("background", "transparent");
   }
 });
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+{
+  $("html,body").css("cursor", "none");
+}
