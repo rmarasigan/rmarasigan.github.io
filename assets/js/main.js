@@ -29,5 +29,6 @@ $(window).scroll(function()
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
 {
-  $("html,body").css("cursor", "none");
+  $("html").css("cursor", "none");
+  $("body").css("cursor", "none");
 }
