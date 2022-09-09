@@ -8,7 +8,7 @@ $(".nav-link").css("color", "#FFF");
 $(".navbar-brand").css("color", "#FFF");
 $(".navbar-toggler").css("color", "#FFF");
 
-$(window).scroll(function()
+$(window).scroll(function ()
 {
   if ($(window).scrollTop() >= 50)
   {
@@ -31,4 +31,26 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 {
   $("html").css("cursor", "none");
   $("body").css("cursor", "none");
+  $("#dots").css("display", "none");
+  $("#more").css("display", "inline");
+  $(".btn-see-more").css("display", "none");
 }
+
+$(".btn-see-more").on("click", function () {
+  let dots = $("#dots");
+  let seeMore = $("#more");
+  let btnSeeMore = $(".see-more__btn-text");
+
+  if (dots.css("display") === "none")
+  {
+    dots.css("display", "inline");
+    btnSeeMore.text("See more");
+    seeMore.css("display", "none");
+  }
+  else
+  {
+    dots.css("display", "none");
+    btnSeeMore.text("See less");
+    seeMore.css("display", "inline");
+  }
+});

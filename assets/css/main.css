@@ -218,6 +218,7 @@ header.jumbotron .container .row
 }
 
 /*----- Valorant button -----*/
+.btn-see-more,
 .hdr__btn-about-me,
 .mdl__btn-about-me
 {
@@ -234,6 +235,7 @@ header.jumbotron .container .row
   background-color: transparent;
 }
 
+.btn-see-more .label,
 .hdr__btn-about-me .label,
 .mdl__btn-about-me .label
 {
@@ -242,6 +244,7 @@ header.jumbotron .container .row
   position: relative;  
 }
 
+.see-more__btn-text,
 .hdr__btn-text,
 .mdl__btn-text
 {
@@ -252,6 +255,7 @@ header.jumbotron .container .row
   background-color: transparent;
 }
 
+.see-more__btn-hover-effect,
 .hdr__btn-hover-effect,
 .mdl__btn-hover-effect
 {
@@ -269,6 +273,7 @@ header.jumbotron .container .row
   transition: -webkit-transform 0.3s ease-out;
 }
 
+.btn-see-more:hover,
 .hdr__btn-about-me:hover,
 .mdl__btn-about-me:hover
 {
@@ -276,6 +281,8 @@ header.jumbotron .container .row
   cursor: inherit;
 }
 
+.btn-see-more::before,
+.btn-see-more::after,
 .hdr__btn-about-me::before,
 .hdr__btn-about-me::after,
 .mdl__btn-about-me::before,
@@ -291,6 +298,7 @@ header.jumbotron .container .row
   border: 1px solid rgba(236, 232, 225, 0.5);
 }
 
+.btn-see-more::before,
 .hdr__btn-about-me::before,
 .mdl__btn-about-me::before
 {
@@ -298,6 +306,7 @@ header.jumbotron .container .row
   border-bottom: 0;
 }
 
+.btn-see-more::after,
 .hdr__btn-about-me::after,
 .mdl__btn-about-me::after
 {
@@ -305,6 +314,7 @@ header.jumbotron .container .row
   border-top: 0;
 }
 
+.btn-see-more .label::before,
 .hdr__btn-about-me .label:before,
 .mdl__btn-about-me .label:before
 {
@@ -317,12 +327,14 @@ header.jumbotron .container .row
   position: absolute;  
 }
 
+.btn-see-more:hover .see-more__btn-hover-effect,
 .hdr__btn-about-me:hover .hdr__btn-hover-effect,
 .mdl__btn-about-me:hover .mdl__btn-hover-effect
 {
   transform: translateX(0) skew(-10deg);
 }
 
+.btn-see-more::after
 .hdr__btn-text:after,
 .mdl__btn-text:after
 {
@@ -337,12 +349,15 @@ header.jumbotron .container .row
   transition: background-color 0.2s ease-in;
 }
 
+.btn-see-more:hover .see-more__btn-text::after,
 .hdr__btn-about-me:hover .hdr__btn-text:after,
 .mdl__btn-about-me:hover .mdl__btn-text:after
 {
   background-color:#FFF;
 }
 
+.btn-see-more .label::before,
+.btn-see-more .label::after,
 .hdr__btn-about-me .label::before,
 .hdr__btn-about-me .label::after,
 .mdl__btn-about-me .label::before,
@@ -351,12 +366,15 @@ header.jumbotron .container .row
   border: 1px solid rgba(236, 232, 225, 0.5);
 }
 
+.btn-see-more:hover,
 .hdr__btn-about-me:hover,
 .mdl__btn-about-me:hover
 {
   color: #212121;
 }
 
+.btn-see-more::before,
+.btn-see-more::after,
 .hdr__btn-about-me::before,
 .hdr__btn-about-me::after,
 .mdl__btn-about-me::before,
