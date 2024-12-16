@@ -145,15 +145,7 @@ header.jumbotron .container .row
   color: #4A4A4A;
 }
 
-.modal__contact-text
-{
-  right: -10px;
-  bottom: -15px;
-  color: #FFF;  
-}
-
-.modal__about-text,
-.modal__contact-text
+.modal__about-text
 {
   z-index: 0;
   opacity: .07;
@@ -161,6 +153,23 @@ header.jumbotron .container .row
   font-size: 7.5rem;
   position: absolute;
   font-family: League Spartan, Helvetica, Arial, sans-serif;
+}
+
+#modal__contact-list-wrapper > a
+{
+  color: #FFF;
+  right: -15px;
+  bottom: -15px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  position: relative;
+}
+
+#modal__contact-list-wrapper > a > span
+{
+  right: -15px;
+  font-weight: 400;
+  position: relative;
 }
 
 .modal__about-wrapper
@@ -199,8 +208,8 @@ header.jumbotron .container .row
 .modal__about-subtitle
 {
   font-size: 1rem;
-  font-weight: 400;
-  font-family: LibreBaskerville-Regular, Palatino Linotype, Times New Roman,serif;
+  font-weight: 500;
+  /* font-family: LibreBaskerville-Regular, Palatino Linotype, Times New Roman,serif; */
 }
 
 .modal__about-avatar
