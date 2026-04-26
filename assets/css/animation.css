@@ -1,11 +1,278 @@
-@keyframes wave-animation
-{
-  0% { transform: rotate( 0.0deg) }
-  10% { transform: rotate(14.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
-  20% { transform: rotate(-8.0deg) }
-  30% { transform: rotate(14.0deg) }
-  40% { transform: rotate(-4.0deg) }
-  50% { transform: rotate(10.0deg) }
-  60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
-100% { transform: rotate( 0.0deg) }
+/* ─── Keyframes ──────────────────────────────────────────────────────────── */
+
+@keyframes scroll-pulse {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+}
+
+@keyframes mantra-in {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes flip-word-in {
+  0% {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes flip-word-out {
+  0% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes steam-rise {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0.7;
+  }
+
+  75% {
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: translateY(-30px) scaleX(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes brew-fill {
+
+  0%,
+  8% {
+    height: 3%;
+  }
+
+  45%,
+  65% {
+    height: 70%;
+  }
+
+  95% {
+    height: 70%;
+  }
+
+  100% {
+    height: 3%;
+  }
+}
+
+@keyframes bubble-pop {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(-14px) scale(0.2);
+    opacity: 0;
+  }
+}
+
+/* ─── Reveal classes ──────────────────────────────────────────────────────── */
+
+.reveal-fade,
+.reveal-slide-up {
+  opacity: 0;
+}
+
+.reveal-fade {
+  transform: translateY(24px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out-expo),
+    transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.reveal-slide-up {
+  transform: translateY(44px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out-expo),
+    transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.reveal-delay-1 {
+  transition-delay: 150ms;
+}
+
+.reveal-delay-2 {
+  transition-delay: 300ms;
+}
+
+.reveal-delay-3 {
+  transition-delay: 450ms;
+}
+
+.reveal-delay-4 {
+  transition-delay: 600ms;
+}
+
+.reveal-delay-5 {
+  transition-delay: 750ms;
+}
+
+.reveal-fade.is-visible,
+.reveal-slide-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Hero name (static gold gradient) ───────────────────────────────────── */
+
+.hero-name {
+  background: linear-gradient(90deg,
+      var(--color-cream) 0%,
+      var(--color-gold-light) 30%,
+      var(--color-gold) 60%,
+      var(--color-cream) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Scroll indicator ────────────────────────────────────────────────────── */
+
+.scroll-line {
+  display: block;
+  width: 1px;
+  height: 56px;
+  background: linear-gradient(to bottom, transparent, var(--color-gold));
+  animation: scroll-pulse 2.4s ease-in-out infinite;
+  margin: 0 auto;
+}
+
+/* ─── Flip text (word cycling) ────────────────────────────────────────────── */
+
+.flip-cycle {
+  display: inline-block;
+  transform-origin: center bottom;
+  color: var(--color-gold-light);
+  font-style: italic;
+}
+
+.flip-cycle.flipping-out {
+  animation: flip-word-out 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.flip-cycle.flipping-in {
+  animation: flip-word-in 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── Butterfly wing flap (side-view scaleY from thorax centre) ──────────── */
+
+@keyframes butterfly-flap {
+
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  50% {
+    transform: scaleY(0.1);
+  }
+}
+
+/*
+  transform-box: view-box makes transform-origin use the SVG viewBox coordinate
+  space (0 0 90 100), so 58px 50px correctly anchors to the thorax centre where
+  the wings attach.
+*/
+.butterfly-wings {
+  transform-box: view-box;
+  transform-origin: 58px 50px;
+  animation: butterfly-flap 0.7s ease-in-out infinite;
+}
+
+/* ─── Experience parallax exit ────────────────────────────────────────────── */
+
+#experience .timeline-entry {
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+#experience .timeline-entry.parallax-out {
+  opacity: 0;
+  transform: translateY(-28px);
+}
+
+/* ─── Contact reveal panel ────────────────────────────────────────────────── */
+
+.contact-reveal-panel {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.75s var(--ease-out-expo),
+    transform 0.75s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.contact-reveal-panel.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ─── Paper plane (JS-launched animation element) ─────────────────────────── */
+
+.paper-plane {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  color: var(--color-gold);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 10;
+}
+
+.paper-plane svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Reduced motion ──────────────────────────────────────────────────────── */
+
+body.no-motion *,
+body.no-motion *::before,
+body.no-motion *::after {
+  animation-duration: 0.001ms !important;
+  transition-duration: 0.001ms !important;
+  animation-delay: 0ms !important;
 }

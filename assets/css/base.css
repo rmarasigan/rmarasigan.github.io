@@ -1,63 +1,101 @@
-@charset "UTF-8";
-@import url("../vendor/materialdesignicons/css/materialdesignicons.css");
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
 
-@font-face
-{
-  font-family: 'Overpass Mono';
-  src: url(../typefaces/overpass-mono/overpass-mono-semibold.otf);
-  font-style: normal;
-  font-weight: 300;
+:root {
+  --color-black: #28282B;
+  --color-black-soft: #1C1C1F;
+  --color-black-deep: #131315;
+  --color-gold: #C9A84C;
+  --color-gold-dark: #8B6914;
+  --color-gold-light: #E8C97A;
+  --color-gold-pale: #F5E8C0;
+  --color-cream: #F5F0E8;
+  --color-cream-muted: #C8BFA8;
+
+  --font-display: 'Cinzel', 'Trajan Pro 3', serif;
+  --font-heading: 'IM Fell English', 'Palatino Linotype', serif;
+  --font-body: 'Cormorant Garamond', 'Garamond', Georgia, serif;
+
+  --text-xs: clamp(0.7rem, 1vw, 0.8rem);
+  --text-sm: clamp(0.85rem, 1.2vw, 0.95rem);
+  --text-base: clamp(1rem, 1.4vw, 1.1rem);
+  --text-lg: clamp(1.1rem, 1.6vw, 1.35rem);
+  --text-xl: clamp(1.4rem, 3vw, 2.1rem);
+  --text-2xl: clamp(1.9rem, 5vw, 3.2rem);
+  --text-hero: clamp(3rem, 9vw, 7rem);
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+  --duration-fast: 200ms;
+  --duration-mid: 500ms;
+  --duration-slow: 900ms;
+
+  --nav-height: 72px;
 }
 
-html,
-body
-{
-  cursor: url(../img/cursor__metal.cur), pointer;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-footer
-{
-  color: #FFF;
-  background: #1C1D25;
-  justify-content: center;
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
 }
 
-a
-{
+body {
+  background-color: var(--color-black);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
   text-decoration: none;
 }
 
-a:hover
-{
-  cursor: inherit;
+ul,
+ol {
+  list-style: none;
 }
 
-.navbar
-{
-  font-family: 'Overpass Mono', monospace;
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
 }
 
-::-webkit-scrollbar
-{
-  width: .4rem;
-  background-color: transparent;
+::-webkit-scrollbar {
+  width: 2px;
+  background: var(--color-black-deep);
 }
 
-::-webkit-selection
-{
-  background: #BDBDBD;
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 1px;
 }
 
-::selection
-{
-  background: #BDBDBD;
-}
-
-::-webkit-scrollbar-thumb
-{
-  background-color: #FFC600;;
-  border-top-left-radius: 1.5625rem;
-  border-top-right-radius: 1.5625rem;
-  border-bottom-left-radius: 1.5625rem;
-  border-bottom-right-radius: 1.5625rem;
+::selection {
+  background: var(--color-gold);
+  color: var(--color-black);
 }
