@@ -44,11 +44,13 @@
   <!-- ── Hero ───────────────────────────────────────────────── -->
   <section id="hero" class="hero" aria-label="Introduction">
     <canvas id="particle-canvas" aria-hidden="true"></canvas>
+    <canvas id="butterfly-canvas" aria-hidden="true"></canvas>
 
     <div class="hero-content">
       <p class="hero-eyebrow reveal-fade">Software Developer</p>
 
       <div class="hero-name-wrap">
+        <h1 class="hero-name">SHANELLE</h1>
         <div class="butterfly-container" aria-hidden="true">
           <svg viewBox="-5 52 90 100" xmlns="http://www.w3.org/2000/svg" class="butterfly-svg">
             <defs>
@@ -57,17 +59,40 @@
                 <stop offset="45%" stop-color="#C9A84C" />
                 <stop offset="100%" stop-color="#7A5400" />
               </linearGradient>
+              <!-- 3D shading: transparent at tip, dark near body attachment -->
+              <linearGradient id="btfl-sd-u" x1="8" y1="14" x2="58" y2="44" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FFEDAA" stop-opacity="0" />
+                <stop offset="55%" stop-color="#A06000" stop-opacity="0.16" />
+                <stop offset="100%" stop-color="#1E0D00" stop-opacity="0.44" />
+              </linearGradient>
+              <linearGradient id="btfl-sd-d" x1="8" y1="86" x2="58" y2="56" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FFEDAA" stop-opacity="0" />
+                <stop offset="55%" stop-color="#A06000" stop-opacity="0.16" />
+                <stop offset="100%" stop-color="#1E0D00" stop-opacity="0.44" />
+              </linearGradient>
+              <!-- Drop-shadow filter applied to wings + body -->
+              <filter id="btfl-sf" x="-35%" y="-65%" width="180%" height="200%">
+                <feDropShadow dx="0.5" dy="2.5" stdDeviation="2.5" flood-color="#5C3000" flood-opacity="0.44" />
+              </filter>
             </defs>
 
-            <g class="butterfly-wings">
-              <!-- Upper wing + two geometric cutouts -->
-              <path fill-rule="evenodd" fill="url(#btfl-g)" d="M58,44 L54,22 L34,8 L8,14 L10,34 L32,44 Z
-                   M48,24 L30,12 L22,25 L34,27 Z
-                   M52,37 L44,29 L38,32 L44,39 Z" />
-              <!-- Lower wing + two geometric cutouts (y-mirror of upper) -->
-              <path fill-rule="evenodd" fill="url(#btfl-g)" d="M58,56 L54,78 L34,92 L8,86 L10,66 L32,56 Z
-                   M48,76 L30,88 L22,75 L34,73 Z
-                   M52,63 L44,71 L38,68 L44,61 Z" />
+            <g class="butterfly-wings" filter="url(#btfl-sf)">
+              <!-- Upper wing: pivots around its body-attachment edge for 3D flap -->
+              <g class="wing-upper">
+                <path fill-rule="evenodd" fill="url(#btfl-g)" d="M58,44 L54,22 L34,8 L8,14 L10,34 L32,44 Z
+                     M48,24 L30,12 L22,25 L34,27 Z
+                     M52,37 L44,29 L38,32 L44,39 Z" />
+                <path d="M58,44 L54,22 L34,8 L8,14 L10,34 L32,44 Z" fill="url(#btfl-sd-u)" />
+                <path d="M22,15 L8,15 L10,27 Z" fill="#FFFCE4" fill-opacity="0.48" />
+              </g>
+              <!-- Lower wing: pivots around its body-attachment edge for 3D flap -->
+              <g class="wing-lower">
+                <path fill-rule="evenodd" fill="url(#btfl-g)" d="M58,56 L54,78 L34,92 L8,86 L10,66 L32,56 Z
+                     M48,76 L30,88 L22,75 L34,73 Z
+                     M52,63 L44,71 L38,68 L44,61 Z" />
+                <path d="M58,56 L54,78 L34,92 L8,86 L10,66 L32,56 Z" fill="url(#btfl-sd-d)" />
+                <path d="M22,85 L8,85 L10,73 Z" fill="#FFFCE4" fill-opacity="0.48" />
+              </g>
             </g>
 
             <!-- Body: static, no animation -->
@@ -87,7 +112,6 @@
             </g>
           </svg>
         </div>
-        <h1 class="hero-name">SHANELLE</h1>
       </div>
 
       <!-- Mantra block: stack + flip phrase -->

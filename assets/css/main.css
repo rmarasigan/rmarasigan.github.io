@@ -157,6 +157,15 @@ body[data-scrolled="true"] .site-nav {
   z-index: 0;
 }
 
+#butterfly-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .hero-content {
   position: relative;
   z-index: 2;
@@ -185,28 +194,35 @@ body[data-scrolled="true"] .site-nav {
 }
 
 /* Wrapper is inline-block so the butterfly can be positioned relative to the
-   actual text edge rather than the full container width */
+   actual text edge rather than the full container width.
+   isolation: isolate creates a stacking context so the butterfly's z-index
+   is scoped here — z-index 1 puts it in front of the h1, -1 puts it behind. */
 .hero-name-wrap {
   position: relative;
   display: inline-block;
   margin-bottom: var(--space-sm);
+  isolation: isolate;
 }
 
 .butterfly-container {
   position: absolute;
-  top: 50%;
-  left: -86px;
-  width: 80px;
-  height: 90px;
-  /* translateY centres on text; rotate tilts head down-right for landing pose */
-  transform: translateY(-50%) rotate(15deg);
+  top: 0;
+  left: 0;
+  width: 52px;
+  height: 58px;
+  z-index: 1;
   pointer-events: none;
+  transform-origin: center center;
+  perspective: 380px;
+  transform-style: preserve-3d;
 }
 
 .butterfly-svg {
   width: 100%;
   height: 100%;
   overflow: visible;
+  transform-style: preserve-3d;
+  filter: drop-shadow(1px 3px 5px rgba(90, 50, 0, 0.38));
 }
 
 /* Vertical label on the left side of the hero */
@@ -1195,11 +1211,10 @@ body[data-scrolled="true"] .site-nav {
     padding: 0 var(--space-md);
   }
 
-  /* Shrink butterfly so it doesn't overflow on small screens */
+  /* Shrink butterfly slightly on small screens */
   .butterfly-container {
-    width: 58px;
-    height: 65px;
-    left: -62px;
+    width: 42px;
+    height: 47px;
   }
 }
 

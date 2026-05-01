@@ -197,29 +197,35 @@
   animation: flip-word-in 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* ─── Butterfly wing flap (side-view scaleY from thorax centre) ──────────── */
+/* ─── Butterfly wing flap (3D rotateX around each wing's body-attachment edge) ─
+   Each wing half pivots around the edge where it meets the thorax, folding the
+   tip toward the viewer — the same technique as real CSS-3D butterfly demos.
+   Upper wing attaches at y=44, lower at y=56 (SVG viewBox coordinates). */
 
-@keyframes butterfly-flap {
-
-  0%,
-  100% {
-    transform: scaleY(1);
-  }
-
-  50% {
-    transform: scaleY(0.1);
-  }
+@keyframes wing-flap-upper {
+  0%, 100% { transform: rotateX(0deg); }
+  50%       { transform: rotateX(55deg); }
 }
 
-/*
-  transform-box: view-box makes transform-origin use the SVG viewBox coordinate
-  space (0 0 90 100), so 58px 50px correctly anchors to the thorax centre where
-  the wings attach.
-*/
-.butterfly-wings {
+@keyframes wing-flap-lower {
+  0%, 100% { transform: rotateX(0deg); }
+  50%       { transform: rotateX(-55deg); }
+}
+
+.wing-upper {
   transform-box: view-box;
-  transform-origin: 58px 50px;
-  animation: butterfly-flap 0.7s ease-in-out infinite;
+  transform-origin: 58px 44px;
+  animation: wing-flap-upper 0.7s ease-in-out infinite;
+}
+
+.wing-lower {
+  transform-box: view-box;
+  transform-origin: 58px 56px;
+  animation: wing-flap-lower 0.7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wing-upper, .wing-lower { animation: none; }
 }
 
 /* ─── Experience parallax exit ────────────────────────────────────────────── */

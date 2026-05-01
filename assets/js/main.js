@@ -516,6 +516,167 @@
     }
   }
 
+  /* ── Butterfly orbit + sparkle trail ────────────────────────────────────────
+     Moves the butterfly SVG in an ellipse around the hero name with pseudo-3D
+     depth: smaller + dimmer + behind the text on the top arc, full-size + in
+     front on the bottom arc. Turning is smoothed via lerp so the flip from
+     right-facing to left-facing looks like a natural bank rather than a snap.
+     Sparkle particles trail from the butterfly and fade on the canvas layer. */
+
+  function initButterflyOrbit(reducedMotion) {
+    var container = document.querySelector('.butterfly-container');
+    var nameWrap = document.querySelector('.hero-name-wrap');
+    var hero = document.getElementById('hero');
+    var canvas = document.getElementById('butterfly-canvas');
+    if (!container || !nameWrap || !hero || !canvas) return;
+
+    var ctx = canvas.getContext('2d');
+    var raf = null;
+    var sparks = [];
+    var angle = Math.PI;           // start at leftmost point
+    var SPEED = (2 * Math.PI) / (24 * 60); // ~24-second orbit at 60 fps
+    var currentScaleX = 1;         // lerped horizontal flip (1 = right, -1 = left)
+    var heroName = document.querySelector('.hero-name');
+    var currentNameRotY = 0;       // lerped perspective tilt on the name text
+
+    var SPARK_COLORS = [
+      'rgba(253,224,141,',
+      'rgba(201,168,76,',
+      'rgba(245,218,110,',
+    ];
+
+    // nameWrap's top-left corner in hero-canvas coordinates (updated on resize)
+    var nwLeft = 0;
+    var nwTop = 0;
+
+    function updateLayout() {
+      canvas.width = hero.offsetWidth;
+      canvas.height = hero.offsetHeight;
+      var heroRect = hero.getBoundingClientRect();
+      var nwRect = nameWrap.getBoundingClientRect();
+      nwLeft = nwRect.left - heroRect.left;
+      nwTop = nwRect.top - heroRect.top;
+    }
+
+    function emitSpark(cx, cy) {
+      sparks.push({
+        x: cx + (Math.random() - 0.5) * 8,
+        y: cy + (Math.random() - 0.5) * 8,
+        vx: (Math.random() - 0.5) * 0.55,
+        vy: (Math.random() - 0.5) * 0.5 - 0.22,
+        size: Math.random() * 2 + 0.5,
+        alpha: 0.55 + Math.random() * 0.3,
+        decay: 0.007 + Math.random() * 0.005,
+        hue: Math.floor(Math.random() * SPARK_COLORS.length),
+      });
+    }
+
+    function draw() {
+      var nwW = nameWrap.offsetWidth;
+      var nwH = nameWrap.offsetHeight;
+      var rx = nwW / 2 + 42;        // orbit extends ~42 px beyond each text edge
+      var ry = nwH + 44;            // doubled: lemniscate max-y = ry/2 ≈ original ry
+
+      var cosA  = Math.cos(angle);
+      var sinA  = Math.sin(angle);
+      var sin2A = Math.sin(2 * angle);
+
+      // Lemniscate (∞) orbit: x = rx·cos(t),  y = ry·sin(2t)/2
+      var bx = nwW / 2 + rx * cosA;
+      var by = nwH / 2 + ry * sin2A / 2;
+
+      var bw = container.offsetWidth || 52;
+      var bh = container.offsetHeight || 58;
+      container.style.left = (bx - bw / 2) + 'px';
+      container.style.top  = (by - bh / 2) + 'px';
+
+      // ── Smooth horizontal flip (lerp toward target) ────────────────────────
+      // vx = -sin(angle): positive → moving right, negative → moving left.
+      // Lerp factor 0.07 takes ~1 s to complete the flip — the butterfly appears
+      // to bank into each turn rather than snapping direction.
+      var targetScaleX = -sinA >= 0 ? 1 : -1;
+      currentScaleX += (targetScaleX - currentScaleX) * 0.07;
+
+      // ── Pseudo-3D depth ────────────────────────────────────────────────────
+      // sin2A > 0 → y > 0 → upper arc of the ∞ → butterfly is behind the name.
+      // sin2A < 0 → y < 0 → lower arc of the ∞ → butterfly is in front.
+      // depth: 0 at the top peak (most behind), 1 at the bottom peak (most in front).
+      var depth = (1 - sin2A) / 2;
+      var scale3d = 0.70 + depth * 0.30;   // 0.70 (back) → 1.0 (front)
+      var opacity = 0.45 + depth * 0.55;   // 0.45 (back) → 1.0 (front)
+
+      // Combined transform: flip × perspective scale
+      var sx = currentScaleX * scale3d;
+      container.style.transform = 'scaleX(' + sx.toFixed(3) + ') scaleY(' + scale3d.toFixed(3) + ')';
+      container.style.opacity = opacity.toFixed(2);
+
+      // z-index relative to nameWrap's stacking context (isolation: isolate):
+      //   1 → in front of h1 text; -1 → behind h1 text
+      container.style.zIndex = sin2A > 0 ? '-1' : '1';
+
+      angle += SPEED;
+
+      // ── Subtle 3D perspective tilt on hero name ────────────────────────────
+      // Tilts the name slightly toward the butterfly, giving the illusion that
+      // the text is turning to face where the butterfly has flown.
+      if (heroName) {
+        var normX = (bx - nwW / 2) / (rx || 1);
+        var targetNameRotY = -normX * 5;
+        currentNameRotY += (targetNameRotY - currentNameRotY) * 0.025;
+        var rotVal = container.offsetParent !== null ? currentNameRotY : 0;
+        heroName.style.transform = 'perspective(700px) rotateY(' + rotVal.toFixed(2) + 'deg)';
+      }
+
+      // Emit sparkle at butterfly centre in hero-canvas space
+      if (Math.random() < 0.55) {
+        emitSpark(nwLeft + bx, nwTop + by);
+      }
+
+      // Draw and age sparkles
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (var i = sparks.length - 1; i >= 0; i--) {
+        var s = sparks[i];
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        ctx.fillStyle = SPARK_COLORS[s.hue] + s.alpha.toFixed(2) + ')';
+        ctx.fill();
+        s.x += s.vx;
+        s.y += s.vy;
+        s.alpha -= s.decay;
+        if (s.alpha <= 0) sparks.splice(i, 1);
+      }
+
+      raf = requestAnimationFrame(draw);
+    }
+
+    function pause() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+    function resume() { if (!raf) draw(); }
+
+    updateLayout();
+
+    if (reducedMotion) {
+      var bw = container.offsetWidth || 52;
+      var bh = container.offsetHeight || 58;
+      container.style.left = (-bw - 8) + 'px';
+      container.style.top  = ((nameWrap.offsetHeight - bh) / 2) + 'px';
+      container.style.transform = 'scaleX(1)';
+      container.style.zIndex = '1';
+      return;
+    }
+
+    draw();
+
+    new IntersectionObserver(function (entries) {
+      entries[0].isIntersecting ? resume() : pause();
+    }, { threshold: 0 }).observe(hero);
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(updateLayout, 200);
+    });
+  }
+
   /* ── Boot ────────────────────────────────────────────────────────────────────
      Reduced-motion check runs first so all subsequent initialisers can branch
      on it. Particle and coffee reveal run regardless; the rest are skipped under
@@ -534,6 +695,7 @@
       initSkillsCarousel();
     }
     initParticles(rm);
+    initButterflyOrbit(rm);
     initCoffeeReveal();
   });
 }());
